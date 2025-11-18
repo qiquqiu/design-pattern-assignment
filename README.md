@@ -1,6 +1,6 @@
 # 软件设计与架构 - 设计模式作业项目
 
-本项目是"软件设计与架构"课程的设计模式作业实现，使用Java语言完成了**14个经典设计模式的实践**（10个课程要求 + 4个额外示例），展现了深入的设计模式理解和实际应用能力。
+本项目是"软件设计与架构"课程的设计模式作业实现，使用Java语言完成了**15个经典设计模式的实践**（10个课程要求 + 5个额外示例），展现了深入的设计模式理解和实际应用能力。
 
 ## 📋 项目概述
 
@@ -167,26 +167,33 @@ src/main/java/com/demo/
 │   │   └── FileSystemDemo.java
 │   └── 组合模式学习文档.md
 │
-└── 📁 state/                  # 🎯 额外示例：状态模式 (已完成) 🌟对比学习
-    ├── origin/             # 传统方式（展示问题）
-    │   ├── Order.java      # 使用switch的订单类
-    │   └── OrderDemo.java  # 传统方式演示
-    ├── optimize/           # 状态模式（解决方案）
-    │   ├── Order.java      # 状态模式的上下文类
-    │   ├── OrderDemo.java  # 状态模式演示
-    │   └── states/         # 状态类包
-    │       ├── OrderState.java         # 状态接口
-    │       ├── PendingState.java       # 待支付状态
-    │       ├── PaidState.java          # 已支付状态
-    │       ├── ShippedState.java       # 已发货状态
-    │       ├── CompletedState.java     # 已完成状态
-    │       └── CancelledState.java     # 已取消状态
-    └── 状态模式学习文档.md   # 完整学习文档
+├── 📁 state/                  # 🎯 额外示例：状态模式 (已完成) 🌟对比学习
+│   ├── origin/             # 传统方式（展示问题）
+│   │   ├── Order.java      # 使用switch的订单类
+│   │   └── OrderDemo.java  # 传统方式演示
+│   ├── optimize/           # 状态模式（解决方案）
+│   │   ├── Order.java      # 状态模式的上下文类
+│   │   ├── OrderDemo.java  # 状态模式演示
+│   │   └── states/         # 状态类包
+│   │       ├── OrderState.java         # 状态接口
+│   │       ├── PendingState.java       # 待支付状态
+│   │       ├── PaidState.java          # 已支付状态
+│   │       ├── ShippedState.java       # 已发货状态
+│   │       ├── CompletedState.java     # 已完成状态
+│   │       └── CancelledState.java     # 已取消状态
+│   └── 状态模式学习文档.md   # 完整学习文档
+│
+└── 📁 memento/               # 🎯 额外示例：备忘录模式 (已完成) 🌟极简演示
+    ├── Originator.java       # 发起人类（需要保存状态的对象）
+    ├── Memento.java          # 备忘录类（保存状态快照）
+    ├── Caretaker.java        # 管理者类（Stack多状态管理）
+    ├── MementoDemo.java      # 演示客户端
+    └── 备忘录模式学习笔记.md # 完整学习文档（Git Stash类比）
 
 📊 统计信息：
 ├── 🏗️ 创建型模式 (5个): 单例、简单工厂、抽象工厂、建造者、工厂方法
 ├── 🏛️ 结构型模式 (5个): 适配器、桥接、装饰、外观、组合
-└── 🎯 行为型模式 (4个): 观察者、策略、状态 + 学习文档
+└── 🎯 行为型模式 (5个): 观察者、策略、状态、备忘录 + 学习文档
 ```
 
 ## 📚 作业详情
@@ -323,7 +330,7 @@ src/main/java/com/demo/
 
 ---
 
-### 🎯 行为型模式 (2个)
+### 🎯 行为型模式 (3个)
 
 #### 作业九：观察者模式的应用
 **目的**: 掌握观察者模式特点，分析具体问题并使用观察者模式进行设计
@@ -367,6 +374,22 @@ java -cp target/classes com.demo.state.origin.OrderDemo
 # 状态模式
 java -cp target/classes com.demo.state.optimize.OrderDemo
 ```
+
+---
+
+#### 🎯 额外示例：备忘录模式的应用
+**目的**: 理解备忘录模式的存档和读档机制
+
+**内容**: 极简状态存档恢复系统
+- **核心三角色**: Originator（发起人）、Memento（备忘录）、Caretaker（管理者）
+- **Git Stash类比**: 类似Git的stash功能，支持多级撤销
+- **Stack管理**: 使用Stack实现多状态管理，支持连续撤销
+- **极简设计**: 专注核心功能，代码简洁易懂
+- **实现**: `com.demo.memento.Caretaker`（Stack多状态管理）
+
+**运行**: `com.demo.memento.MementoDemo`
+
+---
 
 ---
 
@@ -435,6 +458,9 @@ java -cp target/classes com.demo.state.origin.OrderDemo
 
 # 额外示例：状态模式（状态模式）
 java -cp target/classes com.demo.state.optimize.OrderDemo
+
+# 额外示例：备忘录模式
+java -cp target/classes com.demo.memento.MementoDemo
 ```
 
 ### 打包项目
@@ -467,6 +493,7 @@ mvn clean
 - **观察者模式**: 对象间一对多依赖关系
 - **策略模式**: 定义算法族，分别封装起来
 - **状态模式**: 允许对象在内部状态改变时改变它的行为
+- **备忘录模式**: 在不破坏封装性的前提下保存和恢复对象状态
 
 ## 🌟 项目特色
 
@@ -493,7 +520,13 @@ mvn clean
 - **对比分析**: 详细对比两种方式的优缺点
 - **业务场景**: 订单状态管理系统，贴近实际应用
 
-### 5. 📚 优质代码质量
+### 5. 💾 备忘录模式极简演示
+- **极简设计**: 专注核心功能，代码简洁易懂
+- **Git Stash类比**: 类似Git的stash功能，便于理解
+- **Stack多状态**: 使用Stack实现多级撤销机制
+- **三角色清晰**: Originator、Memento、Caretaker职责分明
+
+### 6. 📚 优质代码质量
 - **完整注释**: 每个类都有详细的JavaDoc注释
 - **设计原则**: 严格遵循SOLID设计原则
 - **业务场景**: 贴近实际的业务应用场景
@@ -510,12 +543,13 @@ mvn clean
 ## 🎓 学习成果
 
 通过本项目，你可以：
-- 深入理解14个设计模式的核心思想（10个作业+4个额外示例）
+- 深入理解15个设计模式的核心思想（10个作业+5个额外示例）
 - 掌握不同设计模式的适用场景和区别
 - 理解工厂模式三种变体：简单工厂、工厂方法、抽象工厂
 - 学习装饰器模式在真实电商业务中的应用
 - 掌握状态模式与传统状态管理方式的对比
 - 理解策略模式在JDK源码中的实际应用
+- 学习备忘录模式的存档读档机制（类似Git Stash）
 - 提升面向对象设计能力
 - 增强代码的可维护性和可扩展性
 

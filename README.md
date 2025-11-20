@@ -1,6 +1,6 @@
 # 软件设计与架构 - 设计模式作业项目
 
-本项目是"软件设计与架构"课程的设计模式作业实现，使用Java语言完成了**15个经典设计模式的实践**（10个课程要求 + 5个额外示例），展现了深入的设计模式理解和实际应用能力。
+本项目是"软件设计与架构"课程的设计模式作业实现，使用Java语言完成了**16个经典设计模式的实践**（10个课程要求 + 6个额外示例），展现了深入的设计模式理解和实际应用能力。
 
 ## 📋 项目概述
 
@@ -183,6 +183,21 @@ src/main/java/com/demo/
 │   │       └── CancelledState.java     # 已取消状态
 │   └── 状态模式学习文档.md   # 完整学习文档
 │
+├── 📁 command/               # 🎯 额外示例：命令模式 (已完成) 🌟中间人解耦
+│   ├── Command.java           # 命令接口（声明execute和undo）
+│   ├── RemoteControl.java     # 调用者（遥控器）
+│   ├── RemoteControlDemo.java # 演示客户端
+│   ├── receivers/             # 接收者包（真正干活的对象）
+│   │   ├── Light.java         # 电灯接收者
+│   │   └── Fan.java           # 风扇接收者
+│   ├── commands/              # 具体命令包（中间人）
+│   │   ├── LightOnCommand.java     # 开灯命令
+│   │   ├── LightOffCommand.java    # 关灯命令
+│   │   ├── FanHighCommand.java     # 风扇高速命令
+│   │   ├── FanOffCommand.java      # 风扇关闭命令
+│   │   └── NoCommand.java          # 空命令（避免空指针）
+│   └── 命令模式学习文档.md     # 完整学习文档（中间人解耦解析）
+│
 └── 📁 memento/               # 🎯 额外示例：备忘录模式 (已完成) 🌟极简演示
     ├── Originator.java       # 发起人类（需要保存状态的对象）
     ├── Memento.java          # 备忘录类（保存状态快照）
@@ -193,7 +208,7 @@ src/main/java/com/demo/
 📊 统计信息：
 ├── 🏗️ 创建型模式 (5个): 单例、简单工厂、抽象工厂、建造者、工厂方法
 ├── 🏛️ 结构型模式 (5个): 适配器、桥接、装饰、外观、组合
-└── 🎯 行为型模式 (5个): 观察者、策略、状态、备忘录 + 学习文档
+└── 🎯 行为型模式 (6个): 观察者、策略、状态、备忘录、命令 + 学习文档
 ```
 
 ## 📚 作业详情
@@ -377,6 +392,21 @@ java -cp target/classes com.demo.state.optimize.OrderDemo
 
 ---
 
+#### 🎯 额外示例：命令模式的应用
+**目的**: 理解命令模式的"中间人"解耦机制
+
+**内容**: 智能家居遥控器系统
+- **核心角色**: Command（命令接口）、Invoker（调用者）、Receiver（接收者）
+- **中间人解耦**: 具体命令类作为中间人，连接调用者和接收者
+- **撤销支持**: 每个命令都支持execute()和undo()操作
+- **动态组合**: 遥控器可以控制任何实现了Command接口的设备
+- **空命令模式**: 使用NoCommand避免空指针异常
+- **实现**: `com.demo.command.commands.LightOnCommand`（开灯命令）
+
+**运行**: `com.demo.command.RemoteControlDemo`
+
+---
+
 #### 🎯 额外示例：备忘录模式的应用
 **目的**: 理解备忘录模式的存档和读档机制
 
@@ -459,6 +489,9 @@ java -cp target/classes com.demo.state.origin.OrderDemo
 # 额外示例：状态模式（状态模式）
 java -cp target/classes com.demo.state.optimize.OrderDemo
 
+# 额外示例：命令模式
+java -cp target/classes com.demo.command.RemoteControlDemo
+
 # 额外示例：备忘录模式
 java -cp target/classes com.demo.memento.MementoDemo
 ```
@@ -494,6 +527,7 @@ mvn clean
 - **策略模式**: 定义算法族，分别封装起来
 - **状态模式**: 允许对象在内部状态改变时改变它的行为
 - **备忘录模式**: 在不破坏封装性的前提下保存和恢复对象状态
+- **命令模式**: 将请求封装为对象，通过"中间人"实现调用者和接收者的解耦
 
 ## 🌟 项目特色
 
@@ -543,8 +577,9 @@ mvn clean
 ## 🎓 学习成果
 
 通过本项目，你可以：
-- 深入理解15个设计模式的核心思想（10个作业+5个额外示例）
+- 深入理解16个设计模式的核心思想（10个作业+6个额外示例）
 - 掌握不同设计模式的适用场景和区别
+- 理解命令模式的"中间人"解耦机制和实际应用
 - 理解工厂模式三种变体：简单工厂、工厂方法、抽象工厂
 - 学习装饰器模式在真实电商业务中的应用
 - 掌握状态模式与传统状态管理方式的对比
